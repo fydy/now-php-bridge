@@ -20,14 +20,7 @@ jobs:
        - npm test
        - echo "Testing Finished."
 
-   - stage: deploy
-     script:
-       - echo "NPM Deploying Started ..."
-       - npm version
-       - npm run build
-       - echo "NPM Building Finished."
-
-     deploy:
+  deploy:
        provider: npm
        email: you660555@gmail.com
        api_key: "$NPM_TOKEN"
