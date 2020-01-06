@@ -28,7 +28,7 @@ jobs:
      deploy:
        provider: npm
        email: you660555@gmail.com
-       api_key: "$NPM_TOKEN"
+       api_key: $NPM_TOKEN
        skip_cleanup: true
        tag: next
        on:
