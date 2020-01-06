@@ -1,15 +1,35 @@
 language : node_js
 node_js:
  - stable
+
 install:
 - npm install
 
-deploy:
-   provider: npm
-   email: you660555@gmail.com
-   api_key: "$NPM_TOKEN"
-   skip_cleanup: true
-    on:
-    tag: true
-    all_branches: true
-   tag: latest
+os:
+ - linux
+
+stages:
+ - test
+ - name: deploy
+
+jobs:
+ include:
+   - stage: test
+     script:
+       - node --version
+       - npm --version
+       - echo "Testing Started ..."
+
+   - stage: deploy
+     script:
+       - echo "NPM Deploying Started ..."
+       - npm version
+
+     deploy:
+       provider: npm
+       email: you660555@gmail.com
+       api_key: "$NPM_TOKEN"
+       skip_cleanup: true
+       tag: next
+       on:
+         all_branches: true
